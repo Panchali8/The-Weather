@@ -54,9 +54,25 @@ body {
       .btn:hover {
         background-color: RoyalBlue;
       }
-      .btnOutDoor{
+
+      .btnChangeBackground{
         background-color: #FFFF;
         border:none;
+        width:40px;
+        height:40px;
+        text-align: center;
+        align-items: center;
+        cursor:pointer;
+      }
+
+      .btnChangeBackground:hover{
+        transform: scale(1.02);
+        box-shadow: 0 4px 16px -7px rgba(0,0,0,0.3);
+      }
+
+      .btnOutDoor{
+        background-color: #FFFF;
+        border:2px #E6FFFD;
         width:60px;
         height:60px;
         margin:10px;
