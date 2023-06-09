@@ -29,11 +29,18 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
             <form class="d-flex" role="search">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <input id="searchPlace" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                 <button id="search-button" type="button" class="btn btn-primary">
                     <i class="fa fa-search"></i>
                   </button>
             </form>
+          </div>
+         
+          <div style="color:white;padding-left:15px;">
+            <button id="changeColor" type="button" class="btnChangeBackground rounded-circle" title="Change background color">
+              <img src="images/light_icn.png" width="30px; height:30px"/>
+            </button>
+           
           </div>
         </div>
       </nav>
@@ -49,21 +56,21 @@
                     <h4 class="card-title" style="text-align:left;float:left;">Today</h4>
                   </div>
                   <div class="col-6">
-                    <label style="float:right;color: green;">04:31 PM | 25/05/2023</label><br/>
-                    <label style="float:right;color: green;">Boralesgamuwa</label>
+                    <label id="c_dataTime" style="float:right;color: green;">2023-06-07 22:52</label><br/>
+                    <label id="c_place" style="float:right;color: green;">Galle, Southern, Sri Lanka</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-2" style="padding-right: 0px;padding-top: 0px">
-                    <img src="images/sunny.png" width="80" height="80"/>
+                    <img id="c_weatherIMG"  src="images/emptyIMG.png" width="80" height="80"/>
                   </div>
                   <div class="col-5" style="padding-left:5px;">
-                    <div class="row"><div class="col" style="width:15px;"><label style="font-size: 15px;">Partly sunny</label></div></div>
+                    <div class="row"><div class="col" style="width:15px;"><label id="weatherCondition" style="font-size: 15px;"></label></div></div>
                     <div class="row">
                       <div class="col">
-                        <span style="font-size: 1.8em;font-weight: bolder;padding-bottom: 0px;">31°C</span><br/>
+                        <span id="temperature" style="font-size: 1.8em;font-weight: bolder;padding-bottom: 0px;"></span><br/>
                         <span style="font-size: 1em;font-weight: lighter;padding-top: 0px;">Feels like</span>
-                      <label style="font-size: 1em;font-weight: lighter;">&nbsp;41°C</label>
+                      <label id="c_feelsLike" style="font-size: 1em;font-weight: lighter;">&nbsp;</label>
                       </div>
                     </div>
                   </div>
@@ -76,11 +83,11 @@
                     <div class="row">
                       <div class="col-6">
                         <i class="fa fa-upload" aria-hidden="true" style="color:#ffbb00"></i>
-                        <label style="font-size: 1em;font-weight: lighter;">&nbsp;5:53AM</label>
+                        <label id="c_sunrise" style="font-size: 1em;font-weight: lighter;">&nbsp;</label>
                       </div>
                       <div class="col-6">
                         <i class="fa fa-download" aria-hidden="true" style="color:#ffbb00"></i>
-                        <label style="font-size: 1em;font-weight: lighter;">&nbsp;6:38PM</label>
+                        <label id="c_sunset" style="font-size: 1em;font-weight: lighter;">&nbsp;</label>
                       </div>
                     </div>
                   </div>
@@ -88,52 +95,62 @@
                 <div class="row" style="padding-top:15px;">
                   <div class="col-6">
                     <ul class="list-group list-group-flush" style="font-size: smaller;">
-                      <li class="list-group-item"><i class="fa-solid fa-temperature-high"></i></i>&nbsp;&nbsp;High / Low<span style="float:right">33/27</span></li>
-                      <li class="list-group-item"><i class="fa-solid fa-droplet"></i>&nbsp;&nbsp;&nbsp;Humidity<span style="float:right">33/27</span></li>
+                      <li class="list-group-item"><i class="fa-solid fa-temperature-high"></i></i>&nbsp;&nbsp;High / Low<span id="c_maxTemp" style="float:right"></span></li>
+                      <li class="list-group-item"><i class="fa-solid fa-droplet"></i>&nbsp;&nbsp;&nbsp;Humidity<span id="c_humidity" style="float:right"></span></li>
                       <li class="list-group-item"><i class="fa-solid fa-up-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;Pressure<span style="float:right"><i class="fa-solid fa-arrow-down"></i>&nbsp;33/27</span></li>
-                      <li class="list-group-item"><i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Visibility<span style="float:right">33/27</span></li>
+                      <li class="list-group-item"><i class="fa-solid fa-eye"></i>&nbsp;&nbsp;Visibility<span id="c_visibility" style="float:right"></span></li>
                     </ul>
                   </div>
                   <div class="col-6">
                     <ul class="list-group list-group-flush" style="font-size: small;">
-                      <li class="list-group-item"><i class="fa-solid fa-wind"></i>&nbsp;&nbsp;Wind<span style="float:right"><i class="fa-solid fa-location-arrow"></i>&nbsp;33/27</span></li>
+                      <li class="list-group-item"><i class="fa-solid fa-wind"></i>&nbsp;&nbsp;Wind(mph)<span id="windVal" style="float:right"><i class="fa-solid fa-location-arrow"></i>&nbsp;</span></li>
                       <li class="list-group-item"><i class="fa-solid fa-droplet"></i>&nbsp;&nbsp;&nbsp;Dev Point<span style="float:right">33/27</span></li>
-                      <li class="list-group-item"><i class="fa-solid fa-bahai"></i>&nbsp;&nbsp;UV Index<span style="float:right">33/27</span></li>
-                      <li class="list-group-item"><i class="fa-solid fa-circle-half-stroke"></i></i>&nbsp;&nbsp;&nbsp;Moon Phase<span style="float:right">33/27</span></li>
+                      <li class="list-group-item"><i class="fa-solid fa-bahai"></i>&nbsp;&nbsp;UV Index<span id="c_uvIndex" style="float:right"></span></li>
+                      <li class="list-group-item"><i class="fa-solid fa-circle-half-stroke"></i></i>&nbsp;&nbsp;&nbsp;Moon Phase<span id="c_moonPhase" style="float:right"></span></li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+
+
+
+
+
+
+
+          
           <!--Upcoming forecast-->
         <div class="col-5" style="padding-left:0px;">
           <div class="card">
             <div class="card-body">
               <section class="text-center" style="font-size: 13px;">
                 <div class="row">
+
                   <div class="col-lg-3 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
-                    <label class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
-                    <h4 class="fw-bold mb-3" style="color:blue">31°C</h4>
-                    <img src="images/sunny.png" width="45" height="45"/>
+                    <label id="hour_1" class="text-dark mb-3" style="font-weight: bolder;"></label>
+                    <h4 id="hourTemp_1" class="fw-bold mb-3" style="color:blue"></h4>
+                    <img id="hourWeather_1" src="images/emptyIMG.png" width="45" height="45"/>
                     <div class="vr vr-blurry position-absolute my-0 h-100 d-none d-md-block top-0 end-0"></div>
                   </div>
                   <div class="col-lg-3 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
-                    <label class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
-                    <h4 class="fw-bold mb-3" style="color:blue">31°C</h4>
-                    <img src="images/sunny.png" width="45" height="45"/>
+                    <label id="hour_2"  class="text-dark mb-3" style="font-weight: bolder;"></label>
+                    <h4 id="hourTemp_2" class="fw-bold mb-3" style="color:blue"></h4>
+                    <img id="hourWeather_2" src="images/emptyIMG.png" width="45" height="45"/>
                     <div class="vr vr-blurry position-absolute my-0 h-100 d-none d-md-block top-0 end-0"></div>
                   </div>
                   <div class="col-lg-3 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
-                    <label class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
-                    <h4 class="fw-bold mb-3" style="color:blue">31°C</h4>
-                    <img src="images/sunny.png" width="45" height="45"/>
+                    <label id="hour_3"  class="text-dark mb-3" style="font-weight: bolder;"></label>
+                    <h4 id="hourTemp_3" class="fw-bold mb-3" style="color:blue"></h4>
+                    <img id="hourWeather_3" src="images/emptyIMG.png" width="45" height="45"/>
                     <div class="vr vr-blurry position-absolute my-0 h-100 d-none d-md-block top-0 end-0"></div>
                   </div>
                   <div class="col-lg-3 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
-                    <label class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
-                    <h4 class="fw-bold mb-3" style="color:blue">31°C</h4>
-                    <img src="images/sunny.png" width="45" height="45"/>
+                    <label id="hour_4"  class="text-dark mb-3" style="font-weight: bolder;"></label>
+                    <h4 id="hourTemp_4" class="fw-bold mb-3" style="color:blue"></h4>
+                    <img id="hourWeather_4" src="images/emptyIMG.png" width="45" height="45"/>
                   </div>
                 </div>
               </section>
@@ -143,30 +160,17 @@
             <div class="card-body">
               <section class="text-center" style="font-size: 13px;">
                 <div class="row">
-                  <div class="col-lg-3 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
-                    <label class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
-                    <h4 class="fw-bold mb-3" style="color:blue">31°C</h4>
-                    <img src="images/sunny.png" width="45" height="45"/>
+                  <div class="col-lg-6 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
+                    <label id="day_1" class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
+                    <h4 id="dayTepm_1" class="fw-bold mb-3" style="color:blue">31°C</h4>
+                    <img id="dayImg_1" src="images/sunny.png" width="45" height="45"/>
                     <div class="vr vr-blurry position-absolute my-0 h-100 d-none d-md-block top-0 end-0"></div>
                   </div>
-                  <div class="col-lg-3 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
-                    <label class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
-                    <h4 class="fw-bold mb-3" style="color:blue">31°C</h4>
-                    <img src="images/sunny.png" width="45" height="45"/>
-                    <div class="vr vr-blurry position-absolute my-0 h-100 d-none d-md-block top-0 end-0"></div>
+                  <div class="col-lg-6 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
+                    <label id="day_2" class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
+                    <h4 id="dayTepm_2" class="fw-bold mb-3" style="color:blue">31°C</h4>
+                    <img id="dayImg_2" src="images/sunny.png" width="45" height="45"/>
                   </div>
-                  <div class="col-lg-3 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
-                    <label class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
-                    <h4 class="fw-bold mb-3" style="color:blue">31°C</h4>
-                    <img src="images/sunny.png" width="45" height="45"/>
-                    <div class="vr vr-blurry position-absolute my-0 h-100 d-none d-md-block top-0 end-0"></div>
-                  </div>
-                  <div class="col-lg-3 col-md-6 mb-5 mb-md-5 mb-lg-0 position-relative">
-                    <label class="text-dark mb-3" style="font-weight: bolder;">1 PM</label>
-                    <h4 class="fw-bold mb-3" style="color:blue">31°C</h4>
-                    <img src="images/sunny.png" width="45" height="45"/>
-                  </div>
-                </div>
               </section>
             </div>
           </div>
@@ -187,7 +191,7 @@
                   </div>
                   <div class="col">
                     <label style="font-size: medium;color: aliceblue;font-weight: bolder;">Umbrella</label><br/>
-                    <label style="font-size: small;color: aliceblue;">No need</label><br/>
+                    <label id="umbrella" style="font-size: small;color: aliceblue;">No need</label><br/>
                   </div>
                 </div>
             </div>
@@ -202,7 +206,7 @@
                       </div>
                       <div class="col">
                         <label style="font-size: medium;color: aliceblue;font-weight: bolder;">Out Doors</label><br/>
-                        <label style="font-size: small;color: aliceblue;">Good</label><br/>
+                        <label id="outDoor"  style="font-size: small;color: aliceblue;">Good</label><br/>
                       </div>
                     </div>
                 </div>
@@ -217,7 +221,7 @@
                       </div>
                       <div class="col">
                         <label style="font-size: medium;color:aliceblue;font-weight: bolder;">Clothing</label><br/>
-                        <label style="font-size: small;color: aliceblue;;">Shorts</label><br/>
+                        <label id="cloths"  style="font-size: small;color: aliceblue;;">Shorts</label><br/>
                       </div>
                     </div>
                 </div>
@@ -226,6 +230,19 @@
          </div>
          <!--Day Suggestions End-->
      </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
       <!--Past days forecast-->
       <div class="row" style="padding-top:10px;padding-right:10px;padding-left:5px;">
         <div class="col-8">
@@ -300,7 +317,28 @@
     <!--Jquery cdn link-->
     <!--Chart js link-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="js/jquery_3.6.4_jquery.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+   /*   $("changeColor").click(function(){
+        alert("The paragraph was clicked.");
+      });
+      $(butt).ready(function(){
+  $("changeColor").click(function(){
+    alert("The paragraph was clicked.");
+  });
+}); */
+/*
+fetch('http://api.weatherapi.com/v1/forecast.json?Key=9029f4832b0341f38c7130418231505&q="Panadura"')
+  .then(res => {
+    return res.json();
+  })
+  .then(json => {
+    forecastData=json;
+        $("#place").text(json.location.name+", "+json.location.region+", "+json.location.country);
+  });
+  */
 
+    </script>
 </body>
 </html>
